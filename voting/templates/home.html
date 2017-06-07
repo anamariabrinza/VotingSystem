@@ -1,0 +1,24 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% block navigation_menu %}
+        {% include 'partials/navigation_menu.html' %}
+    {% endblock %}
+
+    <h2>List of elections</h2>
+    <br>
+    Name  :  Status  :  End Date  :  Link
+    {% for election in elections %}
+        <div>
+            <h3>{{ election.name }} :{{ election.get_status_display }} :{{ election.endDate }} : link </h3>
+        </div>
+    {% endfor %}
+</body>
+</html>
