@@ -5,6 +5,13 @@
         {% csrf_token %}
         {{ election_form.as_p }}
 
+
+        {{ choice_form.as_p }}
+
         <button type="submit">Press me</button>
+
     </form>
 {% endblock %}
+
+
+
