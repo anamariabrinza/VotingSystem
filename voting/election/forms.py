@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import inlineformset_factory
+
 from .models import Election, ElectionChoices
 
 
@@ -16,15 +18,6 @@ class ChoiceForm(forms.ModelForm):
 
     class Meta:
         model = ElectionChoices
-        exclude = ('election_id',)
+        exclude = ()
 
-    """
-    Form for election choices
-   
-
-    option = forms.CharField(
-                    max_length=100,
-                    widget=forms.TextInput(attrs={
-                        'placeholder': 'Election choice/option',
-                    }),
-                    required=False)  """
+ChoiceFormSet = inlineformset_factory(Election, ElectionChoices, form=ChoiceForm, extra=1)

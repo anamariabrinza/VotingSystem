@@ -23,8 +23,9 @@ class Election(models.Model):
 
 class ElectionChoices(models.Model):
 
-    optionName = models.CharField(max_length=255) #se refera la un
-    election = models.ForeignKey(Election) #specify model
+    election = models.ForeignKey(Election)  # specify model
+    optionName = models.CharField(max_length=255) 
+
 
 class Vote(models.Model):
    user = models.ForeignKey(User) # - do we really need that?

@@ -19,7 +19,7 @@ from django.contrib import admin
 
 
 urlpatterns = [
-   url(r'^elections/$', ElectionList.as_view(), name='election-name'),
+   url(r'^election/$', ElectionList.as_view(), name='election-name'),
    url(r'^create-election/$', CreateElection.as_view(), name='create-election'),
    url(r'^home/', MainPage.as_view(), name='main_page'),  #Home page for loged in student
    url(r'^election/(?P<pk>\d+)$', ElectionDetail.as_view(), name='election-detail')

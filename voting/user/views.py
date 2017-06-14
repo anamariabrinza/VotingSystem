@@ -7,7 +7,7 @@ from django.views import View
 def home(request):
     if request.method == 'GET':
         elections = Election.objects.filter(status=0)
-        return render(request, 'templates/home.html', {'elections': elections})
+        return render(request, 'templates/home.html', {'election': elections})
     if request.method == 'POST':
         pass
 
