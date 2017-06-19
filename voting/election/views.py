@@ -4,6 +4,7 @@ from django.shortcuts import reverse
 from django.forms.formsets import formset_factory
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ElectionForm, ChoiceForm, ChoiceFormSet
 from .models import Election, ElectionChoices
@@ -18,7 +19,7 @@ class MainPage(View):
         return render(request, 'main.html')
 
 
-class ElectionList(View): #page of election
+class ElectionList(LoginRequiredMixin, View): #page of election
 
     def get(self, request):
         elections = Election.objects.filter(status=0)
@@ -28,19 +29,16 @@ class ElectionList(View): #page of election
         pass
 
 
-class ElectionDetail(View):
+class ElectionDetail(LoginRequiredMixin, View):
     def get(self, request, pk):
         election_id = Election.objects.get(pk=pk)
         return render(request, 'election/election_detail.html', {'election':election_id})
+
     def post(self, request):
         pass
 
-# We need here to add the option of a election
-# optionName from ElectionChoices
-# there can be 2 ore even more options per election
 
-
-class CreateElection(CreateView): # creating a new election only by administration and EC
+class CreateElection(LoginRequiredMixin, CreateView): # creating a new election only by administration and EC
     model = Election
     fields = ['name', 'description', 'startDate', 'endDate', 'status', 'group']
     success_url = reverse_lazy('election:election-name')

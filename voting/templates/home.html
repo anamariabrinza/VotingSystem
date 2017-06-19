@@ -14,10 +14,13 @@
 
     <h2>List of elections</h2>
     <br>
-    Name  :  Status  :  End Date  :  Link
+    Name  :  Status  :  End Date
     {% for election in elections %}
         <div>
-            <h3>{{ election.name }} :{{ election.get_status_display }} :{{ election.endDate }} : link </h3>
+            <h3>
+
+                <a href="{% url 'election:election-detail' election.id %}">{{ election.name }}</a>
+                 :{{ election.get_status_display }} :{{ election.endDate  }}  </h3>
         </div>
     {% endfor %}
 </body>
