@@ -24,12 +24,14 @@ class Election(models.Model):
 class ElectionChoices(models.Model):
 
     election = models.ForeignKey(Election)  # specify model
-    optionName = models.CharField(max_length=255) 
+    optionName = models.CharField(max_length=255)
+    votes = models.IntegerField(default=0) #used to count the votes for a certain option
 
 
 class Vote(models.Model):
    user = models.ForeignKey(User) # - do we really need that?
    electionChoice = models.ForeignKey(ElectionChoices)
+
 
 
 
