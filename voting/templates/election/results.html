@@ -3,7 +3,7 @@
 <h1>{{ election.name }}</h1>
 
 <ul>
-{% for choice in election.choice_set.all %}
+{% for choice in election.electionchoices_set.all %}
     <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
 {% endfor %}
 </ul>

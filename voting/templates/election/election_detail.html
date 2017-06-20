@@ -1,23 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <br>
+    <br>
+    <br>
   <h1>Election: {{ election.name }}</h1>
+    <br>
 
-  <p><strong>Description:</strong> {{ election.description }}</p>
-  <p><strong>Start Date:</strong> {{ election.startDate }}</p>
-  <p><strong>End Date:</strong> {{ election.endDate }}</p>
+    <div class="well">
 
+    <form role="form" class="clearfix">
 
-    <p><h3>Choose an option:</h3></p>
-    <!-- The option should be included and Vote button-->
-    <form action="{% url 'election:results' election.id %}" method="post">
+        <div class="col-md-12 form-group">
+            <label>   Description:</label>
+        {{ election.description }}
+        </div>
+
+        <div class="col-md-12 form-group">
+        <label >Start Date:</label>
+        {{ election.startDate }}
+    </div>
+    <div class="col-md-12 form-group">
+        <label >End Date:</label>
+        {{ election.endDate }}
+    </div>
+
+    <div class="col-md-12 form-group text-left"><label>Choose an option:</label></div>
+    <div class="col-md-12 form-group text-left">
+        <!-- The option should be included and Vote button-->
+
+        <form action="" method="post">
     {% csrf_token %}
     {% for electionchoices in election.electionchoices_set.all %}
+
+
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choices.id }}" />
         <label for="choices{{ forloop.counter }}">{{ electionchoices.optionName }}</label><br />
-    {% endfor %}
-    <input type="submit" value="Vote" />
-    </form>
 
+    {% endfor %}
+
+            <input type="submit" value="Vote" class="btn btn-danger"/>
+        </form>
+
+    </div>
+    </form>
+    </div>
 
 {% endblock %}

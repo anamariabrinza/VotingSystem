@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'election',
+    'bootstrap3',
     'user',
     'rules'
+
 ]
 
 MIDDLEWARE = [

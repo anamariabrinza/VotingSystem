@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Thank you for voting!</h1>
 
 
-    <br>
+    <div class="container text-center" >
+  <div class="jumbotron">
+    <h2>Thank you for your vote!</h2>
+    <p>Your vote was registered successfully! </p>
+      <br>
     <a href="{% url 'election:election-name'  %}">Back to elections</a>
+  </div>
+
+</div>
+
 {% endblock %}

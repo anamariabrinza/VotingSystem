@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+    margin-top: 75px;
+}
+    </style>
 </head>
-<body>
+<body >
     {% block navigation_menu %}
         {% include 'partials/navigation_menu.html' %}
     {% endblock %}
@@ -14,8 +19,17 @@
     {% endblock %}
 
     {% block footer %}
-        Copyright
+        <footer>
+    <div class="container">
+        <hr />
+        <p class="text-center">Copyright © Ana-Maria's APPOO course work project 2017.</p>
+    </div>
+</footer>
     {% endblock %}
 
+
 </body>
+
+
+
 </html>
