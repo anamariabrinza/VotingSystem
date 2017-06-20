@@ -31,6 +31,7 @@ class ElectionChoices(models.Model):
 class Vote(models.Model):
    user = models.ForeignKey(User) # - do we really need that?
    electionChoice = models.ForeignKey(ElectionChoices)
+   election = models.ForeignKey(Election)
 
 
 

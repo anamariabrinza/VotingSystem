@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import ElectionList, CreateElection, MainPage, ElectionDetail, ThanksPage
+from .views import ElectionList, CreateElection, MainPage, ElectionDetail, ThanksPage, Results
 from django.contrib import admin
 
 
@@ -23,5 +23,6 @@ urlpatterns = [
    url(r'^create-election/$', CreateElection.as_view(), name='create-election'),
    url(r'^home/', MainPage.as_view(), name='main_page'),  #Home page for loged in student
    url(r'^election/(?P<pk>\d+)$', ElectionDetail.as_view(), name='election-detail'),
-   url(r'^success/$', ThanksPage.as_view(), name='success-vote')
+   url(r'^success/$', ThanksPage.as_view(), name='success-vote'),
+   url(r'^results/(?P<pk>\d+)$', Results.as_view(), name='results')
 ]

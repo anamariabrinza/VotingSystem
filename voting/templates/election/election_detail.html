@@ -10,11 +10,11 @@
 
     <p><h3>Choose an option:</h3></p>
     <!-- The option should be included and Vote button-->
-    <form action="{% url 'election:success-vote'  %}" method="post">
+    <form action="{% url 'election:results' election.id %}" method="post">
     {% csrf_token %}
     {% for electionchoices in election.electionchoices_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ electionchoices.id }}" />
-        <label for="electionchoices{{ forloop.counter }}">{{ electionchoices.optionName }}</label><br />
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choices.id }}" />
+        <label for="choices{{ forloop.counter }}">{{ electionchoices.optionName }}</label><br />
     {% endfor %}
     <input type="submit" value="Vote" />
     </form>

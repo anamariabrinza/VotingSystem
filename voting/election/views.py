@@ -1,14 +1,15 @@
 from django.db import transaction
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.shortcuts import reverse
 from django.forms.formsets import formset_factory
+from django.template import RequestContext
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
 from .forms import ElectionForm, ChoiceForm, ChoiceFormSet
-from .models import Election, ElectionChoices
+from .models import Election, ElectionChoices, Vote
 from django.views import View
 
 # Create your views here.
@@ -45,22 +46,22 @@ class ElectionDetail(LoginRequiredMixin, View):
         return render(request, 'election/election_detail.html', {'election':election_id})
 
     def vote(self, request, pk):
-        election = get_object_or_404(Election, pk=pk)
+        e = get_object_or_404(Election, pk=pk)
         try:
-            selected_choice = election.electionchoices_set.get(pk=request.POST['electionchoices'])
+            selected_choice = e.electionchoices_set.get(pk=request.POST['choice'])
         except (KeyError, ElectionChoices.DoesNotExist):
-            # Redisplay the question voting form.
-            return render(request, 'election/election_detail.html', {
-                'election': election,
+            # Redisplay the poll voting form.
+            return render_to_response('election/election_detail.html', {
+                'election': e,
                 'error_message': "You didn't select a choice.",
-            })
+            }, context_instance=RequestContext(request))
         else:
-            selected_choice += 1
+            selected_choice.votes += 1
             selected_choice.save()
             # Always return an HttpResponseRedirect after successfully dealing
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
-            return HttpResponseRedirect(reverse('election:election-detail', args=(election.id,)))
+            return HttpResponseRedirect(reverse('election.results', args=(e.id,)))
 
 
 class CreateElection(LoginRequiredMixin, CreateView): # creating a new election only by administration and EC
@@ -86,3 +87,9 @@ class CreateElection(LoginRequiredMixin, CreateView): # creating a new election 
                 electionchoices.instance = self.object
                 electionchoices.save()
         return super(CreateElection, self).form_valid(form)
+
+class Results(View):
+
+    def results(self, request, pk):
+        e = get_object_or_404(Election, pk=pk)
+        return render_to_response('election/results.html', {'election': e})
