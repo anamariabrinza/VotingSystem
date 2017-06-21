@@ -103,6 +103,7 @@ class CreateElection(LoginRequiredMixin, CreateView): # creating a new election 
 
 class Results(View):
 
-    def results(self, request, pk):
-        e = get_object_or_404(Election, pk=pk)
-        return render_to_response('election/results.html', {'election': e})
+    def get(self, request):
+        return render(request, 'election/results.html')
+
+

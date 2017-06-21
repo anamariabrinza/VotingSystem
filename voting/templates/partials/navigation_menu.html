@@ -35,7 +35,7 @@
         <a href="{% url 'election:election-name' %}">Elections</a>
     </li>
     <li>
-        <a href="">Results</a>
+        <a href="{% url 'election:results' %}">Results</a>
     </li>
     {% if user.role == 2 %}
     <li>

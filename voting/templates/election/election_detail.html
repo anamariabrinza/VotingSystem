@@ -29,7 +29,7 @@
     <div class="col-md-12 form-group text-left">
         <!-- The option should be included and Vote button-->
 
-        <form action="" method="post">
+        <form action="{% url 'election:success-vote' %}" method="post">
     {% csrf_token %}
     {% for electionchoices in election.electionchoices_set.all %}
 
@@ -39,7 +39,7 @@
 
     {% endfor %}
 
-            <input type="submit" value="Vote" class="btn btn-danger"/>
+            <input type="submit" value="Vote" class="btn btn-danger" />
         </form>
 
     </div>

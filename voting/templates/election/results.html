@@ -1,11 +1,41 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1>{{ election.name }}</h1>
 
+
+
+<script>
+
+</script>
+<style>
+
+
+</style>
+{% block content %}
+
+<div class="well">
+<br>
+    <br>
+<br>
+
+    <dl>
+  <dt>
+    Some dummy data for results:
+  </dt>
+        <br>
+  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>
+  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>
+  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>
+  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>
+  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd>
+</dl>
+</div>
+{% endblock %}
+    <!-- This code makes a paragraph
 <ul>
 {% for choice in election.electionchoices_set.all %}
     <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
 {% endfor %}
 </ul>
 
-{% endblock %}
+
+-->

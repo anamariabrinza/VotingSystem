@@ -24,5 +24,5 @@ urlpatterns = [
    url(r'^home/', MainPage.as_view(), name='main_page'),  #Home page for loged in student
    url(r'^election/(?P<pk>\d+)$', ElectionDetail.as_view(), name='election-detail'),
    url(r'^success/$', ThanksPage.as_view(), name='success-vote'),
-   url(r'^results/(?P<pk>\d+)$', Results.as_view(), name='results')
+   url(r'^results/', Results.as_view(), name='results')
 ]
